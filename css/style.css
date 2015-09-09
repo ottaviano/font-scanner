@@ -1,0 +1,67 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+#canvas {
+    width: 1000px;
+}
+
+body {
+    background: #34495E;
+    font-family: Verdana;
+    font-size: 16px;
+    color: #fff;
+}
+
+.float-l {
+    float: left;
+}
+
+.clear {
+    clear: both;
+}
+
+a, .color-link {
+    color: #E74C3C;
+}
+
+.header-bloc {
+    background: #1A2530;
+    border-bottom: 3px solid #2C3E50;
+    padding:15px;
+}
+
+.configuration-bloc {
+    margin-left: 20px;
+}
+
+.font-select {
+    height: 30px;
+    font-size: 16px;
+    color: #fff;
+    border: 1px solid #E74C3C;
+    border-radius: 0 none;
+    background-color: #2C3E50;
+}
+
+.submit {
+    height: 30px;
+    padding: 0 10px;
+    background: #2C3E50;
+    font-size: 16px;
+    color: #fff;
+    border:1px solid #E74C3C;
+}
+
+#container {
+    width: 580px;
+    margin: 0 auto;
+    font-size: 10px;
+}
+
+#result-matrix {
+    background: #2C3E50;
+    overflow-y: auto;
+    height: 600px;
+}
