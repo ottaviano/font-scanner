@@ -1,5 +1,5 @@
 /**
- * Created by dimitrigritsajuk on 06/04/15.
+ * Created by Dimitri Gritsajuk on 06/04/15.
  */
 var Scanner = {
     canvas: null,
@@ -14,13 +14,15 @@ var Scanner = {
     origCanvasHeight: null,
 
     configuration: {
-        fontStyle: fontStyle,
+        fontFamily: 'arial',
+        displayMode: 'js'
     },
 
     /**
      *
      */
-    start: function() {
+    start: function(configuration) {
+        this.setConfiguration(configuration);
         this.initialize();
 
         for (var i = 65; i <= 90; i++) {
@@ -37,10 +39,27 @@ var Scanner = {
     },
 
     /**
+     * Save scanner configuration
+     *
+     * @param configuration
+     */
+    setConfiguration: function(configuration) {
+        if (configuration.fontFamily) {
+            this.configuration.fontStyle = configuration.fontFamily;
+        }
+
+        if (configuration.displayMode) {
+            this.configuration.displayMode = configuration.displayMode;
+        }
+    },
+
+    /**
      *
      */
     initialize: function() {
-        this.canvas = document.getElementById('canvas');
+        this.canvas = document.createElement('canvas');
+        this.canvas.width = 20;
+        this.canvas.height = 20;
         this.context = this.canvas.getContext('2d');
 
         this.origCanvasWith = this.canvas.width;
@@ -54,7 +73,7 @@ var Scanner = {
      *
      */
     fontConfiguration: function() {
-        this.context.font = this.origCanvasHeight + 'px ' + this.configuration.fontStyle;
+        this.context.font = this.origCanvasHeight + 'px ' + this.configuration.fontFamily;
         this.context.textBaseline = 'top';
     },
 
@@ -62,7 +81,7 @@ var Scanner = {
      *
      */
     displayResult: function() {
-        var block = document.getElementById('result-matrix');
+        var block = document.getElementById('matrix');
         var content = "var matrix = {\n";
         for (var i in this.matrix) {
             content += '    ' + i + ': [ // ' + String.fromCharCode(i) + '\n';
@@ -75,7 +94,7 @@ var Scanner = {
             }
             content += '        ],\n';
         }
-        content += '};'
+        content += '};';
         block.innerHTML = content;
     },
 
