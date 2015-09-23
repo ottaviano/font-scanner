@@ -51,6 +51,14 @@ var Scanner = {
         if (configuration.displayMode) {
             this.configuration.displayMode = configuration.displayMode;
         }
+
+        if (configuration.idResultBlock) {
+            this.configuration.idResultBlock = configuration.idResultBlock;
+        }
+
+        if (configuration.resultWriter) {
+            this.configuration.resultWriter = configuration.resultWriter;
+        }
     },
 
     /**
@@ -81,21 +89,9 @@ var Scanner = {
      *
      */
     displayResult: function() {
-        var block = document.getElementById('matrix');
-        var content = "var matrix = {\n";
-        for (var i in this.matrix) {
-            content += '    ' + i + ': [ // ' + String.fromCharCode(i) + '\n';
-            for (var y in this.matrix[i][0]) {
-                content += '            [';
-                for (var x in this.matrix[i]) {
-                    content += this.matrix[i][x][y] + ',';
-                }
-                content += '], \n';
-            }
-            content += '        ],\n';
+        if (this.configuration.resultWriter) {
+            this.configuration.resultWriter.write(this.matrix, this.configuration.idResultBlock);
         }
-        content += '};';
-        block.innerHTML = content;
     },
 
     /**

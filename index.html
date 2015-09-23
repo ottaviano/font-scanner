@@ -12,6 +12,7 @@
             <h1 id="title">FontScanner</h1>
 
             <div id="configuration">
+
                 <h4>Configuration</h4>
 
                 <form>
@@ -30,12 +31,11 @@
                         <select name="output-format" id="output-format">
                             <option value="js">JS</option>
                             <option value="php">PHP</option>
-                            <option value="java">JAVA</option>
                         </select>
                     </div>
 
                     <div id="submit-block">
-                        <input type="submit" value="Submit" id="submit"/>
+                        <input type="submit" value="GO" id="submit"/>
                     </div>
                 </form>
             </div>
@@ -50,41 +50,10 @@
             <a href="javascript:selectAll()">Select all</a>
         </div>
         <div class="clear"></div>
-        <script type="text/javascript">
-            <!--
-            function selectAll() {
-                var containerId = 'matrix';
-                if (document.selection) {
-                    var range = document.body.createTextRange();
-                    range.moveToElementText(document.getElementById(containerId));
-                    range.select();
-                } else if (window.getSelection) {
-                    var range = document.createRange();
-                    range.selectNode(document.getElementById(containerId));
-                    window.getSelection().addRange(range);
-                }
-            }
 
-            window.onload = function() {
-                launchScanner();
-            };
-
-            document.getElementById('submit').addEventListener('click', function(e) {
-                launchScanner();
-                e.preventDefault();
-                e.stopPropagation();
-            });
-
-            function launchScanner() {
-                var fontFamily = document.getElementById('font-family').value;
-                var outputFormat = document.getElementById('output-format').value;
-                Scanner.start({
-                    fontFamily:fontFamily,
-                    outputFormat: outputFormat
-                });
-            }
-            -->
-        </script>
-        <script src="js/scanner.js" type="text/javascript"></script>
+        <script type="text/javascript" src="js/writer-js.js"></script>
+        <script type="text/javascript" src="js/writer-php.js"></script>
+        <script type="text/javascript" src="js/scanner.js"></script>
+        <script type="text/javascript" src="js/page-functions.js"></script>
     </body>
 </html>
