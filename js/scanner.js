@@ -12,6 +12,7 @@ var Scanner = {
     maxX: null,
     origCanvasWith: null,
     origCanvasHeight: null,
+    fontSize: 20,
 
     configuration: {
         fontFamily: 'arial',
@@ -66,8 +67,8 @@ var Scanner = {
      */
     initialize: function() {
         this.canvas = document.createElement('canvas');
-        this.canvas.width = 20;
-        this.canvas.height = 20;
+        this.canvas.width = this.fontSize;
+        this.canvas.height = this.fontSize;
         this.context = this.canvas.getContext('2d');
 
         this.origCanvasWith = this.canvas.width;
@@ -133,7 +134,7 @@ var Scanner = {
             var halfMargin = Math.floor(margin/2);
 
             for (var x = charMinX; x <= charMaxX; x++) {
-                for (var y = this.minY; y <= this.maxY; y++) {
+                for (var y = this.minY; y < this.maxY; y++) {
                     scalingMatrix[i][halfMargin + x - charMinX][y - this.minY] = charMatrix[x][y];
                 }
             }
@@ -226,22 +227,21 @@ var Scanner = {
      *
      */
     startScannerChar: function() {
-        var matrix = [];
+        var charMatrix = [];
         var pixelData, pixelSum;
-
-        for (var x = 0; x <= this.canvas.width; x++) {
-            matrix[x] = [];
-            for (var y = 0; y <= this.canvas.height; y++) {
+        for (var x = 0; x < this.canvas.width; x++) {
+            charMatrix[x] = [];
+            for (var y = 0; y < this.canvas.height; y++) {
                 pixelData = this.context.getImageData(x, y, 1, 1).data;
                 pixelSum = pixelData[0] + pixelData[1] + pixelData[2] + pixelData[3];
                 if (pixelSum > 0) {
-                    matrix[x].push(1);
+                    charMatrix[x].push(1);
                     this.setMinMax(x, y);
                 } else {
-                    matrix[x].push(0);
+                    charMatrix[x].push(0);
                 }
             }
         }
-        this.matrix[this.currentCharCode] = matrix;
+        this.matrix[this.currentCharCode] = charMatrix;
     }
 };
