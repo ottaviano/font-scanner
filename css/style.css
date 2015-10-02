@@ -28,17 +28,21 @@ html, body {
     background: #253742;
 }
 
+#configuration label {
+    font-size: 12px;
+}
+
 #matrix-block {
     font-size: 10px;
     height: 100%;
+    max-width: 800px;
     float: left;
 }
 
 #matrix {
     height: 100%;
-    overflow-x: hidden;
-    overflow-y: auto;
-    padding-right: 30px;
+    overflow: auto;
+    /*padding-right: 30px;*/
 }
 
 #submit-block {
